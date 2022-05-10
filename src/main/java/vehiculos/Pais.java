@@ -29,11 +29,12 @@ public class Pais {
 			 }
 		}
 		
-		HashMap<Pais, Integer> hm = new HashMap();
+		HashMap<String, Integer> hm = new HashMap();
 		for (int i = 0; i < Pais.listadoPaises.size(); i++) {
-			Pais key = new Pais(Pais.listadoPaises.get(i).getNombre());
-
+			
+			String key = Pais.listadoPaises.get(i).getNombre();
 			if ( hm.containsKey(key) ) {
+				
 				hm.put(key, hm.get(key) + 1);
 			}else {
 				hm.put(key, 1);
@@ -41,13 +42,13 @@ public class Pais {
 		}
 		//System.out.println(hm);
 		int max = Collections.max(hm.values());
-		List<Pais> keys = new ArrayList<>();
-		for (Map.Entry<Pais, Integer> entry : hm.entrySet()) {
+		List<String> keys = new ArrayList<>();
+		for (Map.Entry<String, Integer> entry : hm.entrySet()) {
 			if (entry.getValue()==max) {
 				keys.add(entry.getKey());
 			}
 		}
 		
-		return keys.get(0);
+		return new Pais(keys.get(0));
 	}
 }

@@ -20,9 +20,9 @@ public class Fabricante {
 		this.nombre = n;
 		this.pais = p;
 	}
-	//public Fabricante(String n) {
-		//this.nombre = n;
-	//}
+	public Fabricante(String n) {
+		this.nombre = n;
+	}
 	
 	public String getNombre() {
 		return this.nombre;
@@ -52,26 +52,30 @@ public class Fabricante {
 			 }
 		}
 		
-		HashMap<Fabricante, Integer> hm = new HashMap();
+		
+		//System.out.println(Fabricante.listadoFabricantes);
+		HashMap<String, Integer> hm = new HashMap();
 		for (int i = 0; i < Fabricante.listadoFabricantes.size(); i++) {
-			Fabricante key = new Fabricante(Fabricante.listadoFabricantes.get(i).getNombre(),new Pais("x"));
-
+			
+			String key = Fabricante.listadoFabricantes.get(i).getNombre();
 			if ( hm.containsKey(key) ) {
 				hm.put(key, hm.get(key) + 1);
 			}else {
+
 				hm.put(key, 1);
 			}
 		}
-		//System.out.println(hm);
+		//System.out.println(hm.values());
 		int max = Collections.max(hm.values());
-		List<Fabricante> keys = new ArrayList<>();
-		for (Map.Entry<Fabricante, Integer> entry : hm.entrySet()) {
+
+		List<String> keys = new ArrayList<>();
+		for (Map.Entry<String, Integer> entry : hm.entrySet()) {
 			if (entry.getValue()==max) {
 				keys.add(entry.getKey());
 			}
 		}
-		
-		return keys.get(0);
+
+		return new Fabricante(keys.get(0));
 	}
 
 
